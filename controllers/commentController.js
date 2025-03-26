@@ -1,13 +1,12 @@
 const Comment = require("../models/Comment");
 
-// Create a new comment or reply
 exports.createComment = async (req, res) => {
   try {
     const { content, blog, parentComment } = req.body;
     if (!content || !blog) {
       return res.status(400).json({ message: "Content and blog are required" });
     }
-    // req.user is populated by your auth middleware
+
     const comment = await Comment.create({
       content,
       blog,
@@ -20,7 +19,6 @@ exports.createComment = async (req, res) => {
   }
 };
 
-// Get all comments for a blog post
 exports.getCommentsByBlog = async (req, res) => {
   try {
     const blogId = req.query.blog;

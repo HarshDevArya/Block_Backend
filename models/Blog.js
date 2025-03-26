@@ -18,21 +18,7 @@ const blogSchema = new mongoose.Schema(
       required: [true, "Blog description is required"],
       trim: true,
     },
-    // content: {
-    //   type: String,
-    //   required: [true, "Blog content is required"],
-    // },
-    // category: {
-    //   type: String,
-    //   required: [true, "Blog category is required"],
-    //   enum: ["Technology", "Lifestyle", "Travel", "Food", "Other"],
-    // },
-    // tags: [
-    //   {
-    //     type: String,
-    //     trim: true,
-    //   },
-    // ],
+
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

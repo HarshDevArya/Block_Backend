@@ -9,7 +9,6 @@ exports.getBlogs = async (req, res) => {
   }
 };
 
-// Get a single blog by ID
 exports.getBlog = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
@@ -21,10 +20,6 @@ exports.getBlog = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// // @desc    Create blog
-// // @route   POST /api/blogs
-// // @access  Private
 
 exports.createBlog = async (req, res) => {
   try {
@@ -51,7 +46,7 @@ exports.updateBlog = async (req, res) => {
     if (!blog) {
       return res.status(404).json({ message: "Blog not found" });
     }
-    // Check if the current user is the author
+
     if (blog.author.toString() !== req.user.toString()) {
       return res
         .status(403)
@@ -66,30 +61,6 @@ exports.updateBlog = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// // @desc    Update blog
-// // @route   PUT /api/blogs/:id
-// // @access  Private
-// exports.updateBlog = async (req, res) => {
-//   try {
-//     const blog = await Blog.findById(req.params.id);
-//     if (!blog) {
-//       return res.status(404).json({ message: "Blog not found" });
-//     }
-
-//     // Check if user is the author
-//     if (blog.author.toString() !== req.user._id.toString()) {
-//       return res.status(401).json({ message: "Not authorized" });
-//     }
-
-//     const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//     });
-//     res.json(updatedBlog);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
 
 exports.deleteBlog = async (req, res) => {
   try {
@@ -109,25 +80,3 @@ exports.deleteBlog = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-// // @desc    Delete blog
-// // @route   DELETE /api/blogs/:id
-// // @access  Private
-// exports.deleteBlog = async (req, res) => {
-//   try {
-//     const blog = await Blog.findById(req.params.id);
-//     if (!blog) {
-//       return res.status(404).json({ message: "Blog not found" });
-//     }
-
-//     // Check if user is the author
-//     if (blog.author.toString() !== req.user._id.toString()) {
-//       return res.status(401).json({ message: "Not authorized" });
-//     }
-
-//     await blog.remove();
-//     res.json({ message: "Blog removed" });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };

@@ -5,7 +5,6 @@ const User = require("../models/User");
 const protect = async (req, res, next) => {
   let token;
 
-  // Extract token from cookies
   if (req.cookies && req.cookies.jwt) {
     token = req.cookies.jwt;
   }
@@ -15,9 +14,8 @@ const protect = async (req, res, next) => {
   }
 
   try {
-    // Verify token using your secret
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // Retrieve user data (excluding password)
+
     req.user = decoded.id;
     next();
   } catch (error) {

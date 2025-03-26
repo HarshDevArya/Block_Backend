@@ -8,14 +8,9 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
 exports.register = async (req, res) => {
   try {
     const { email, password, profileImage } = req.body;
-    console.log("email", email);
-    console.log("password", password);
 
     // Check if user exists
     const userExists = await User.findOne({ email });
@@ -26,12 +21,10 @@ exports.register = async (req, res) => {
     // Validate the Base64 string if provided
     let profileImageData = profileImage;
     if (profileImage) {
-      // Basic check to see if string starts with "data:image/"
       if (!profileImage.startsWith("data:image/")) {
         return res.status(400).json({ message: "Invalid image format" });
       }
     } else {
-      // Use the default if no image is provided
       profileImageData = "default-profile.png";
     }
     // Create user
@@ -70,9 +63,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -112,8 +102,6 @@ exports.login = async (req, res) => {
 
 exports.getCurrentUser = async (req, res) => {
   try {
-    // console.log("req.userId", req.userId);
-    // console.log("req.userId", req.user);
     const user = await User.findById(req.user).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -130,11 +118,7 @@ exports.signOutUser = async (req, res) => {
     secure: true,
     sameSite: "None",
   });
-  // ONLY in DEVELOPMENT
-  // res.clearCookie("jwt", {
-  //   httpOnly: true,
-  //   sameSite: "Lax",
-  // });
+
   res.status(200).json({
     status: "ok",
     message: "Sign out successful",

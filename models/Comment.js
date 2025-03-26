@@ -17,7 +17,7 @@ const commentSchema = new mongoose.Schema(
       ref: "Blog",
       required: true,
     },
-    // If provided, indicates this comment is a reply to another comment.
+
     parentComment: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Comment",
