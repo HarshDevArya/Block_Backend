@@ -1,0 +1,34 @@
+# Logs
+logs
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports
+[0-9]. [0-9]. [0-9]. [0-9] .json
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Coverage directories
+coverage
+.lcov
+.nyc_output
+
+# Build output
+dist
+out
+
+# Cache directories
+.cache
+.parcel-cache
+
+# Environment-specific files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
