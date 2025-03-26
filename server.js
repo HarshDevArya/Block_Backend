@@ -16,7 +16,7 @@ app.use(cookieParser());
 // Middleware
 app.use(
   cors({
-    origin: "https://harsharyablog.netlify.app",
+    origin: "https://harsharyablogs.netlify.app",
     credentials: true,
   })
 );
